@@ -1,14 +1,19 @@
-import CardOffer from '../../components/card/card';
+import ListOffers from '../../components/list-offers/list-offers';
+import useDocumentTitle from '../../hooks/document-title';
+import type { Offers } from '../../mocks/offers';
 
-type MainPageProps = {
-  OfferCount: number;
+
+type MainPagesProps = {
+  offerCount: number;
+  title: string;
+  offers: Offers;
 }
 
 
-function MainPage ({OfferCount: offerCount}: MainPageProps): JSX.Element {
+function MainPage ({ offerCount: offerCount, title: title, offers: offers}: MainPagesProps): JSX.Element {
+  useDocumentTitle(title);
 
   return (
-
     <div className="page page--gray page--main">
       <header className="header">
         <div className="container">
@@ -97,15 +102,9 @@ function MainPage ({OfferCount: offerCount}: MainPageProps): JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
 
-                <CardOffer/>
-                <CardOffer/>
-                <CardOffer/>
-                <CardOffer/>
-                <CardOffer/>
+              <ListOffers offers = {offers}/>
 
-              </div>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
@@ -114,7 +113,6 @@ function MainPage ({OfferCount: offerCount}: MainPageProps): JSX.Element {
         </div>
       </main>
     </div>
-
   );
 }
 
